@@ -1,11 +1,31 @@
-import React from 'react';
-import ReactDOM  from 'react-dom';
+import React, {useEffect, useState} from 'react';
+import ReactDOM from 'react-dom';
+import { Board } from './components/Helper';
 import BoardView from './components/Board';
+import BoardAI from './components/BoardAI';
+import Option from './components/Option';
+import Header from './components/Header';
+import AIThinking from './components/AIThinking';
 import './main.scss';
 import './styles.scss';
 const App = () => {
+    const [board, setBoard] = useState(new Board);
+    const [vsAI, setVsAI] = useState(false);
+    const [mode, setMode] = useState(0);// -1 on startup no key pressed. 
+    //0 on key pressed and mode is -1. 1 is pressed and vsAI is true.
+    const [keyPressed, setKeyPressed] = useState(false); //on startup flase, clicked true and clock start, set false again when gameover or win
     return (
-    <BoardView/>
+    <>
+        <Header />
+        <div className='game-container'>
+            <BoardView board={board} setBoard={setBoard} keyPressed={keyPressed} setKeyPressed={setKeyPressed}/>
+            
+            <Option board={board} setBoard={setBoard} vsAI={vsAI} setVsAI={setVsAI} mode={mode} keyPressed={keyPressed} setKeyPressed={setKeyPressed}/>
+            
+            {/* <AIThinking vsAI={vsAI}/> */}
+            <BoardAI vsAI={vsAI}/>
+        </div>
+    </>
     )
 }
-ReactDOM.render(<App/>, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));

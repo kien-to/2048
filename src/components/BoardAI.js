@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Tile from './Tile';
 import Cell from './Cell';
 import { Board } from './Helper';
 import useEvent from '../hooks/useEvent';
 import GameOverlay from './GameOverlay';
-const BoardView = ({board, setBoard, }) => {
+const BoardAI = ({vsAI}) => {
+    const [board, setBoard] = useState(new Board());
     const handleKeydown = (event)=>{
         if (board.hasWon()){
             return;
@@ -16,17 +17,11 @@ const BoardView = ({board, setBoard, }) => {
             setBoard(newBoard);
         }
     }
-    
-    
+
     useEvent('keydown',
         (event) => handleKeydown(event) 
     )
 
-    useEffect(()=>{
-        window.addEventListener('keydown', ()=>{
-            console.log('Solo yasuo?')
-        })
-    },[]);
 
     const cells = board.cells.map((row, rowIndex) => {
         return (
@@ -46,9 +41,9 @@ const BoardView = ({board, setBoard, }) => {
     }
 
     return (
-        <div className="normal-game">
+        <div className='ai-board' style={{display:vsAI? 'block':'none'}}>
             <div className="details-box" >
-                <div className="resetButton" onClick={resetGame}>Reset Game</div>
+                <div className="resetButton">AI is on the go!</div>
                 <div className="score-box">
                     <div className="score-header">SCORE</div>
                     {board.score} 
@@ -66,4 +61,4 @@ const BoardView = ({board, setBoard, }) => {
 
 
 
-export default BoardView;
+export default BoardAI;

@@ -30,6 +30,9 @@ body {
   border-radius: 7px;
   outline: none;
   position: relative;
+
+  // margin-left: 25px;
+  
 }
 
 .board .cell,
@@ -87,6 +90,7 @@ body {
   font-family: "Clear Sans";
   color: #766;
   background-color: #3d2963;
+  
 }
 
 .tile0 {
@@ -239,4 +243,149 @@ body {
 
 .overlay .message {
   color: #666;
+}
+//heading
+.heading {
+  // margin-left: 25%;
+  align-items: center;
+  justify-content: center;
+  width: 440px ;
+  display: block;
+  margin-bottom: 25px;
+}
+
+.heading-title {
+    width: 500px;
+    height: 115px;
+    font-size: 80px;
+    font-weight: bold;
+    margin: auto;
+    display: block;
+    /* float: left; */
+    color: #ffffff;
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+
+}
+
+//option
+.directions {
+  margin-top: 20px;
+  color: white;
+}
+.directions span{
+  
+    display: block;
+    float: right;
+    margin-top: 18px;
+    font-size: 22px;
+    line-height: 32px;
+
+}
+
+.ai {
+  float:right;
+  display: block;
+  width:218px;
+  height:145px;
+  margin-top: 0px;
+}
+.brain {
+  float:right;
+  display: block;
+  width:180px;
+  height:125px;
+  margin-top: 0px;
+  margin-right: 15px;
+}
+
+.modes {
+  color: white;
+}
+
+.or {
+  color:white;
+  margin-left: 15%;
+  
+}
+
+
+
+@media only screen and (min-width:1440px) {
+  //normal-game
+  //so when the screen is big enough, we got the OPtions to the right
+.normal-game {
+  float: left;
+}
+
+
+.heading{
+   margin-left: 22%;
+}
+
+
+.gamemodes {
+  float: left;
+  margin-left: 25px;
+}
+.ai-board{
+  float: left;
+}
+}
+
+//container
+.root {
+  width: 100%;
+}
+
+
+//clock
+
+@media only screen and (max-width:1440px)  {
+  .game-container{
+  }
+
+  .normal-game {
+    float: left;
+    
+  }
+  
+  .heading{
+     margin-left: 22%;
+  }
+  
+  
+  .gamemodes {
+    float: left;
+    margin-left: 25px;
+  }
+  .ai-board{
+    float: left;
+  }
+  }
+  
+  //container
+  .root {
+    width: 100%;
+  }
+  
+@media only screen and (max-width:990px) {
+  .aithinking, .ai-board, .smallsection, .or,.modes-ai{
+    display: none!important;//no AI for small screen
+  }
+
+  
+  .gamemodes{
+    margin-left: 25%;
+    float: left;
+  }
+  .normal-game{
+    margin-left: 25%;
+    float: left;
+  }
 }
