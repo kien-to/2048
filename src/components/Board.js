@@ -4,7 +4,7 @@ import Cell from './Cell';
 import { Board } from './Helper';
 import useEvent from '../hooks/useEvent';
 import GameOverlay from './GameOverlay';
-const BoardView = ({board, setBoard, }) => {
+const BoardView = ({board, setBoard,keyPressed, setKeyPressed }) => {
     const handleKeydown = (event)=>{
         if (board.hasWon()){
             return;
@@ -22,11 +22,11 @@ const BoardView = ({board, setBoard, }) => {
         (event) => handleKeydown(event) 
     )
 
-    useEffect(()=>{
-        window.addEventListener('keydown', ()=>{
-            console.log('Solo yasuo?')
-        })
-    },[]);
+    // useEffect(()=>{
+    //     window.addEventListener('keydown', ()=>{
+    //         console.log('Solo yasuo?')
+    //     })
+    // },[]);
 
     const cells = board.cells.map((row, rowIndex) => {
         return (
@@ -43,6 +43,7 @@ const BoardView = ({board, setBoard, }) => {
     
     const resetGame=()=>{
         setBoard(new Board());
+        setKeyPressed(false);
     }
 
     return (

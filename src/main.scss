@@ -324,8 +324,9 @@ body {
 }
 
 
+
 .heading{
-   margin-left: 22%;
+   margin-left: 33%;
 }
 
 
@@ -345,6 +346,26 @@ body {
 
 
 //clock
+.clock {
+  
+  width: 450px;
+  height: 100px;
+  margin: 5px;
+  line-height: 90px;
+  //display: inline-block;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 27px;
+  font-size: 55px;
+  font-family: "Clear Sans";
+  color: #766;
+  background-color: #3d2963;
+}
+
+
+
+//responsive
 
 @media only screen and (max-width:1440px)  {
   .game-container{

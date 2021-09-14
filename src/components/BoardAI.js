@@ -4,24 +4,26 @@ import Cell from './Cell';
 import { Board } from './Helper';
 import useEvent from '../hooks/useEvent';
 import GameOverlay from './GameOverlay';
-const BoardAI = ({vsAI}) => {
-    const [board, setBoard] = useState(new Board());
-    const handleKeydown = (event)=>{
-        if (board.hasWon()){
+const BoardAI = ({ vsAI, board, setBoard }) => {
+
+
+    const AIMove = () => {//take in the board and decide the next move
+        if (board.hasWon()) {
             return;
         }
-        if (event.keyCode>=37 && event.keyCode<=40){
-            let dir = event.keyCode - 37;
+        if (!board.hasLost()) {
+            let keyCode = Math.floor(Math.random() * 4);
+            console.log(keyCode);
+            let dir = keyCode;
             let boardClone = Object.assign(Object.create(Object.getPrototypeOf(board)), board);
             let newBoard = boardClone.move(dir);
             setBoard(newBoard);
         }
     }
 
-    useEvent('keydown',
-        (event) => handleKeydown(event) 
-    )
+    useEvent('keydown',()=>AIMove())
 
+    
 
     const cells = board.cells.map((row, rowIndex) => {
         return (
@@ -35,24 +37,24 @@ const BoardAI = ({vsAI}) => {
     const tiles = board.tiles.filter((tile) => tile.value !== 0).map((tile, index) => {
         return <Tile tile={tile} key={index} />
     });
-    
-    const resetGame=()=>{
+
+    const resetGame = () => {
         setBoard(new Board());
     }
 
     return (
-        <div className='ai-board' style={{display:vsAI? 'block':'none'}}>
+        <div className='ai-board' style={{ display: vsAI ? 'block' : 'none' }}>
             <div className="details-box" >
                 <div className="resetButton">AI is on the go!</div>
                 <div className="score-box">
                     <div className="score-header">SCORE</div>
-                    {board.score} 
+                    {board.score}
                 </div>
             </div>
             <div className="board">
                 {cells}
                 {tiles}
-                <GameOverlay onRestart={resetGame} board={board}/>
+                <GameOverlay onRestart={resetGame} board={board} />
             </div>
         </div>
     )

@@ -7,6 +7,7 @@ const Option = ({ board, setBoard, vsAI, setVsAI, keyPressed, setKeyPressed }) =
     let clockShown = keyPressed; //only shown when key is pressed
     const resetGame = () => {
         setBoard(new Board());
+        setKeyPressed(false);
         if (vsAI)
             setVsAI(!vsAI);
     }
@@ -34,7 +35,7 @@ const Option = ({ board, setBoard, vsAI, setVsAI, keyPressed, setKeyPressed }) =
                 <img className="brain" src={Globe}></img>
                 <span class="important" style={{ marginTop: '0px' }}>
                     <br />
-                    Break the world record:<br />
+                    Break the world record:<br/>
                     <strong>Current record is 14s</strong>
                 </span>
             </p>
@@ -47,7 +48,7 @@ const Option = ({ board, setBoard, vsAI, setVsAI, keyPressed, setKeyPressed }) =
                     <img src="https://www.romaincousin.fr/2048/img/keyboard.gif" style={{ marginTop: '3px' }} alt="Keyboard animation - 2048 animated edition"></img>
                     <span class="important" style={{ marginTop: '0px' }}>Combine the identical <br />numbers and try to reach <br /><strong>the 2048 animation</strong>!</span>
                 </p>:
-                <Clock/>
+                <Clock board={board}/>
             }
         </div>
     )
