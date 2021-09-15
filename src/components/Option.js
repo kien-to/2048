@@ -3,10 +3,10 @@ import AI from '../assets/img/AI.png';
 import Globe from '../assets/img/globe.png';
 import { Board } from './Helper';
 import Clock from './Clock';
-const Option = ({ board, setBoard, vsAI, setVsAI, keyPressed, setKeyPressed }) => {
+const Option = ({ board, setBoard, vsAI, setVsAI, keyPressed, setKeyPressed, resetAll }) => {
     let clockShown = keyPressed; //only shown when key is pressed
     const resetGame = () => {
-        setBoard(new Board());
+        resetAll()
         setKeyPressed(false);
         if (vsAI)
             setVsAI(!vsAI);

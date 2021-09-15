@@ -15,19 +15,26 @@ const App = () => {
     const [mode, setMode] = useState(0);// -1 on startup no key pressed. 
     //0 on key pressed and mode is -1. 1 is pressed and vsAI is true.
     const [keyPressed, setKeyPressed] = useState(false); //on startup flase, clicked true and clock start, set false again when gameover or win
-    window.addEventListener('keydown',()=>{ if (!keyPressed){
-        setKeyPressed(true);
+    window.addEventListener('keydown',(event)=>{ if (!keyPressed){
+        if (event.keyCode<=40 && event.keyCode>=37){
+            setKeyPressed(true);
+        }
     }})
+    const resetWholeGame = () => {
+        setBoard(new Board);
+        setBoardAI(new Board);
+        
+    }
     return (
     <>
         <Header />
         <div className='game-container'>
-            <BoardView board={board} setBoard={setBoard} keyPressed={keyPressed} setKeyPressed={setKeyPressed}/>
+            <BoardView board={board} setBoard={setBoard} keyPressed={keyPressed} setKeyPressed={setKeyPressed} boardAI={boardAI} resetAll={resetWholeGame}/>
             
-            <Option board={board} setBoard={setBoard} vsAI={vsAI} setVsAI={setVsAI} mode={mode} keyPressed={keyPressed} setKeyPressed={setKeyPressed} />
+            <Option board={board} setBoard={setBoard} vsAI={vsAI} setVsAI={setVsAI} mode={mode} keyPressed={keyPressed} setKeyPressed={setKeyPressed} resetAll = {resetWholeGame}/>
             
             {/* <AIThinking vsAI={vsAI}/> */}
-            <BoardAI board={boardAI} setBoard={setBoardAI} vsAI={vsAI}/>
+            <BoardAI boardHuman={board} board={boardAI} setBoard={setBoardAI} vsAI={vsAI} resetAll={resetWholeGame}/>
         </div>
     </>
     )

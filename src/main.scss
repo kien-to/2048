@@ -61,6 +61,19 @@ body {
     color: rgba(255, 255, 255, 1);
   }
 }
+.aiButton {
+  background-color: #3d2963;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-size: 25px;
+  padding: 10px 20px;
+  border-radius: 7px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  
+    background-color: #d3386a;
+    color: rgba(255, 255, 255, 1);
+  
+}
 
 .score-header {
   font-size: 50%;
@@ -306,6 +319,9 @@ body {
 
 .modes {
   color: white;
+  :hover {
+    
+  }
 }
 
 .or {

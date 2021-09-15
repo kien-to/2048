@@ -4,26 +4,33 @@ import Cell from './Cell';
 import { Board } from './Helper';
 import useEvent from '../hooks/useEvent';
 import GameOverlay from './GameOverlay';
-const BoardAI = ({ vsAI, board, setBoard }) => {
+import solve from './solve';
+const BoardAI = ({ vsAI, board, setBoard, boardHuman, resetAll }) => {
 
+   
 
     const AIMove = () => {//take in the board and decide the next move
+        let cboard = new Array(4);
+        for (let i = 0; i < 4; i++) {
+            cboard[i] = new Array(4);
+            for (let j = 0; j < 4; j++) {
+                cboard[i][j] = board.cells[i][j].value
+            }
+        }
         if (board.hasWon()) {
             return;
         }
         if (!board.hasLost()) {
-            let keyCode = Math.floor(Math.random() * 4);
-            console.log(keyCode);
-            let dir = keyCode;
+            let dir = solve(cboard);
             let boardClone = Object.assign(Object.create(Object.getPrototypeOf(board)), board);
             let newBoard = boardClone.move(dir);
             setBoard(newBoard);
         }
     }
 
-    useEvent('keydown',()=>AIMove())
+    useEvent('keydown',()=> AIMove())
 
-    
+
 
     const cells = board.cells.map((row, rowIndex) => {
         return (
@@ -45,7 +52,7 @@ const BoardAI = ({ vsAI, board, setBoard }) => {
     return (
         <div className='ai-board' style={{ display: vsAI ? 'block' : 'none' }}>
             <div className="details-box" >
-                <div className="resetButton">AI is on the go!</div>
+                {/* <div className="aiButton">AI is on the go!</div> */}
                 <div className="score-box">
                     <div className="score-header">SCORE</div>
                     {board.score}
@@ -54,7 +61,7 @@ const BoardAI = ({ vsAI, board, setBoard }) => {
             <div className="board">
                 {cells}
                 {tiles}
-                <GameOverlay onRestart={resetGame} board={board} />
+                <GameOverlay onRestart={resetGame} boardAI={board} boardHuman={boardHuman} resetAll={resetAll} />
             </div>
         </div>
     )

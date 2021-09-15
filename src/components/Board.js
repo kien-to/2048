@@ -4,7 +4,7 @@ import Cell from './Cell';
 import { Board } from './Helper';
 import useEvent from '../hooks/useEvent';
 import GameOverlay from './GameOverlay';
-const BoardView = ({board, setBoard,keyPressed, setKeyPressed }) => {
+const BoardView = ({board, setBoard,keyPressed, setKeyPressed, boardAI, resetAll }) => {
     const handleKeydown = (event)=>{
         if (board.hasWon()){
             return;
@@ -17,6 +17,9 @@ const BoardView = ({board, setBoard,keyPressed, setKeyPressed }) => {
         }
     }
     
+    useEffect(()=> {
+        console.log(board)
+    }, [board]);
     
     useEvent('keydown',
         (event) => handleKeydown(event) 
@@ -42,7 +45,7 @@ const BoardView = ({board, setBoard,keyPressed, setKeyPressed }) => {
     });
     
     const resetGame=()=>{
-        setBoard(new Board());
+        resetAll();
         setKeyPressed(false);
     }
 
@@ -58,7 +61,7 @@ const BoardView = ({board, setBoard,keyPressed, setKeyPressed }) => {
             <div className="board">
                 {cells}
                 {tiles}
-                <GameOverlay onRestart={resetGame} board={board}/>
+                <GameOverlay onRestart={resetGame} boardHuman={board} boardAI={boardAI} resetAll={resetAll}/>
             </div>
         </div>
     )

@@ -1,7 +1,7 @@
 import React from 'react'
 import TryAgainLogo from '../assets/img/try-again.gif'
-const GameOverlay = ({onRestart, board}) => {
-    if (board.hasWon())
+const GameOverlay = ({onRestart, boardAI, boardHuman, resetAll}) => {
+    if (boardHuman.hasWon() && (!boardAI.hasWon() || boardAI.hasLost()) || (boardAI.hasLost()&&!boardHuman.hasLost()))
     {
         return (
             <div className="tile2048">
@@ -9,9 +9,9 @@ const GameOverlay = ({onRestart, board}) => {
             </div>
         )
     }
-    else if(board.hasLost()) {
+    else if(boardHuman.hasLost() || (!boardHuman.hasWon()&&boardAI.hasWon())  ) {
         return (
-            <div className="gameOver" onClick={onRestart}>
+            <div className="gameOver" onClick={resetAll}>
                 <img src={TryAgainLogo} alt="Try again" style={{
                     width: '100%',
                     height: '100%',
