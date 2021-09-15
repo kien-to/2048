@@ -28,7 +28,8 @@ const BoardAI = ({ vsAI, board, setBoard, boardHuman, resetAll }) => {
         }
     }
 
-    useEvent('keydown',()=> AIMove())
+    useEvent('keydown',
+    ()=> AIMove())
 
 
 

@@ -19,11 +19,13 @@ const Option = ({ board, setBoard, vsAI, setVsAI, keyPressed, setKeyPressed, res
         <div className="gamemodes">
             <p className='modes modes-ai' onClick={setPlayAI}>
                 <img className="ai" src={AI}></img>
-                <span class="important" style={{ marginTop: '0px' }}>
+                <div className="instruction">
+                <span class="important " style={{ marginTop: '0px' }}>
                     <br />
                     Play against our best AI <br />
                     <strong>The first one 2048 wins</strong>!
                 </span>
+                </div>
             </p>
 
             <img className="smallsection" src="https://www.romaincousin.fr/2048/img/waves.gif" alt="" style={{ width: 200, float: 'left' }}></img>
@@ -33,11 +35,13 @@ const Option = ({ board, setBoard, vsAI, setVsAI, keyPressed, setKeyPressed, res
 
             <p className='modes' onClick={resetGame}>
                 <img className="brain" src={Globe}></img>
+                <div className=" instruction">
                 <span class="important" style={{ marginTop: '0px' }}>
                     <br />
                     Break the world record:<br/>
                     <strong>Current record is 14s</strong>
                 </span>
+                </div>
             </p>
 
 
