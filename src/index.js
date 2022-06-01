@@ -23,6 +23,8 @@ const App = () => {
     const resetWholeGame = () => {
         setBoard(new Board);
         setBoardAI(new Board);
+        //new feature
+        //new features 2
         
     }
     return (
